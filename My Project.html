@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Left or Right</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .choices-container {
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .choice-box {
+            width: 140px;
+            height: 60px;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+        }
+
+        .choice-box:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        
+        #video-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 100;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #000;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 101;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>LEFT OR RIGHT?</h1>
+
+    <div class="choices-container">
+        <div class="choice-box" onclick="playVideo()">LEFT</div>
+        <div class="choice-box" onclick="playVideo()">RIGHT</div>
+    </div>
+
+    <div id="video-overlay">
+        <button class="close-btn" onclick="closeVideo()">✕</button>
+        <video id="myVideo" playsinline>
+            <source src="SnapTik.Net_7574666482219486472.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('video-overlay');
+        const video = document.getElementById('myVideo');
+
+        function playVideo() {
+            overlay.style.display = 'block';
+            
+           
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                });
+            }
+        }
+
+        function closeVideo() {
+            video.pause();
+            video.currentTime = 0;
+            overlay.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
